@@ -32,6 +32,10 @@ def get_target(pos, resource):
             # f.close()
             return target
 
+def valid_move():
+
+
+
 def move(pos, target):
     if pos[0] < target[0]:
         sys.stdout.write('MOVE RIGHT\n\n')
