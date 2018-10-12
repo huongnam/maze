@@ -12,24 +12,24 @@ import sys
 # print(''.join(maze))
 def distance(x1, y1, x2, y2):
     b = (abs(x1 - x2) + abs(y1 - y2))
-    f = open('hehe1', 'a')
-    f.write(str(b) + "\n")
-    f.close()
+    # f = open('hehe1', 'a')
+    # f.write(str(b) + "\n")
+    # f.close()
     return b
 def min_distance(pos, resource):
     a = min((distance(pos[0], pos[1], i[0], i[1]) for i in resource))
-    f = open('hehe', 'a')
-    f.write(str(a) + "\n")
-    f.close()
+    # f = open('hehe', 'a')
+    # f.write(str(a) + "\n")
+    # f.close()
     return a
 
 def get_target(pos, resource):
     for i in resource:
         if distance(pos[0], pos[1], i[0], i[1]) == min_distance(pos, resource):
             target = (i[0], i[1])
-            f = open('hehe2', 'a')
-            f.write(str(target) + "\n")
-            f.close()
+            # f = open('hehe2', 'a')
+            # f.write(str(target) + "\n")
+            # f.close()
             return target
 
 def move(pos, target):
@@ -72,12 +72,26 @@ while True:
         # f.write('coin pos: ' + str(coin) + '\n')
         # f.write('target: ' + str(get_target(pos, coin)) + '\n')
         # f.close()
-        if special_coin != "":
+
+
+
+        # if special_coin != "":
+        #     min_distance(pos, special_coin)
+        #     move(pos, get_target(pos, special_coin))
+        # else:
+        #     min_distance(pos, coin)
+        #     move(pos, get_target(pos, coin))
+
+        if special_coin != []:
             min_distance(pos, special_coin)
             move(pos, get_target(pos, special_coin))
         else:
             min_distance(pos, coin)
             move(pos, get_target(pos, coin))
+
+
+
+
         # while len(s) > 0:
         #     s = input()
         #     f = open('getmaze', 'w')
