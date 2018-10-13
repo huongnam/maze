@@ -227,10 +227,17 @@ while True:
         #     min_distance(pos, coin)
         #     move(pos, get_target(pos, coin))
         # valid_move(empty_pos)
-        graph = valid_move(empty_pos)
-        g = find_path(graph, coin[0], (1,1))
-        f = open('hehe6', 'a')
-        f.write(str(g) + "\n")
+        # graph = valid_move(empty_pos)
+        # g = find_path(graph, coin[0], (1,1))
+        # f = open('hehe6', 'a')
+        # f.write(str(g) + "\n")
+        # f.close()
+        f = open('hehe7', 'a')
+        f.write(str(len(maze)) + "\n")
+        f.close()
+
+        f = open('hehe8', 'a')
+        f.write(str(pos) + "\n")
         f.close()
         # for i in coin:
         #     find_path(graph, pos, i)
@@ -260,3 +267,17 @@ while True:
         #     line = f.readline()
         # f.close()
 print("name")
+
+
+def find_path(maze, start):
+    queue = collections.deque([[start]])
+    seen = set([start])
+    while queue:
+        path = queue.popleft()
+        x, y = path[-1]
+        if maze[y][x] == 'o':
+            return path
+        for x2, y2 in ((x+1,y), (x-1,y), (x,y+1), (x,y-1)):
+            if 0 < x2 < len(maze[0]) and 0 < y2 < len(maze) and maze[y2][x2] != '#' and (x2, y2) not in seen:
+                queue.append(path + [(x2, y2)])
+                seen.add((x2, y2))
