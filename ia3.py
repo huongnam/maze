@@ -34,21 +34,21 @@ def get_target(pos, resource):
             # f.write(str(target) + "\n")
             # f.close()
             return target
-
-def valid_move(empty_pos):
-    graph = {}
-
-    arcs = []
-    for i in empty_pos:
-        for i_x, i_y in ((i[0] + 1, i[1]), (i[0] - 1, i[1]), (i[0], i[1] + 1), (i[0], i[1] - 1)):
-            if 0 < i_x < len(maze[0]) and 0 < i_y < len(maze) and maze[i_y][i_x] != "#":
-                arcs.append(((i_x), (i_y)))
-            # graph[(i_x), (i_y)] = arcs
-            graph.setdefault(((i_x), (i_y)), []).append(arcs)
-    f = open('hehe3', 'a')
-    f.write(str(graph) + "\n")
-    f.close()
-    return graph
+#
+# def valid_move(empty_pos):
+#     graph = {}
+#
+#     arcs = []
+#     for i in empty_pos:
+#         for i_x, i_y in ((i[0] + 1, i[1]), (i[0] - 1, i[1]), (i[0], i[1] + 1), (i[0], i[1] - 1)):
+#             if 0 < i_x < len(maze[0]) and 0 < i_y < len(maze) and maze[i_y][i_x] != "#":
+#                 arcs.append(((i_x), (i_y)))
+#             # graph[(i_x), (i_y)] = arcs
+#             graph.setdefault(((i_x), (i_y)), []).append(arcs)
+#     f = open('hehe3', 'a')
+#     f.write(str(graph) + "\n")
+#     f.close()
+#     return graph
 
 def find_path(graph, start, end, path=[]):
         path = path + [start]

@@ -162,13 +162,16 @@ def valid_move(empty_pos):
     return graph
 
 def find_path(graph, start, end, path=[]):
-        path = path + [start]
-        if start == end:
-            return path
-        for node in graph[start]:
-            if node not in path:
-                newpath = find_path(graph, node, end, path)
-                if newpath: return newpath
+
+    path = path + [start]
+    if start == end:
+        return path
+    
+    for node in graph[start]:
+        if node not in path:
+            newpath = find_path(graph, node, end, path)
+            if newpath: return newpath
+    return None
 
 def move(pos, target):
     if pos[0] < target[0]:
@@ -211,7 +214,11 @@ while True:
         f = open('hehe4', 'a')
         f.write(str(empty_pos) + "\n")
         f.close()
-
+        valid_move(empty_pos)
+        g = find_path(valid_move(empty_pos), (1,3), (3, 6), path=[])
+        f = open('hehe5', 'a')
+        f.write(str(g) + "\n")
+        f.close()
         # f = open('debug', 'a')
         # f.write('current pos: ' + str(pos) + '\n')
         # f.write('coin pos: ' + str(coin) + '\n')
@@ -267,17 +274,3 @@ while True:
         #     line = f.readline()
         # f.close()
 print("name")
-
-
-def find_path(maze, start):
-    queue = collections.deque([[start]])
-    seen = set([start])
-    while queue:
-        path = queue.popleft()
-        x, y = path[-1]
-        if maze[y][x] == 'o':
-            return path
-        for x2, y2 in ((x+1,y), (x-1,y), (x,y+1), (x,y-1)):
-            if 0 < x2 < len(maze[0]) and 0 < y2 < len(maze) and maze[y2][x2] != '#' and (x2, y2) not in seen:
-                queue.append(path + [(x2, y2)])
-                seen.add((x2, y2))

@@ -12,8 +12,7 @@ def find_path(maze, start, resource):
         if maze[y][x] == resource:
             return path
         for _x, _y in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
-            if (0 < _x < len(maze[0]) and 0 < _y < len(maze)
-                and maze[_y][_x] != '#' and (_x, _y) not in seen):
+            if maze[_y][_x] != '#' and (_x, _y) not in seen:
                 queue.append(path + [(_x, _y)])
                 seen.add((_x, _y))
 
@@ -29,6 +28,7 @@ def move(pos, path):
         sys.stdout.write('MOVE UP\n\n')
 
 
+count = 0
 while True:
     s = sys.stdin.readline()
     if 'HELLO' in s:
@@ -40,6 +40,7 @@ while True:
         maze = []
         special_coin = []
         while len(s) > 0:
+            s = input()
             maze.append(s)
         for y in range(len(maze)):
             for x in range(len(maze[y])):
@@ -52,3 +53,6 @@ while True:
         else:
             path = find_path(maze, pos, "o")
         move(pos, path)
+        count += 1
+    if count > 1000:
+        break
