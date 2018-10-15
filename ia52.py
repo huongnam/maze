@@ -4,7 +4,7 @@ import collections
 
 
 def find_path(maze, start, finish):
-    # find the path from start to finish
+    ''' find the path from start to finish '''
     queue = collections.deque([[start]])
     seen = set([start])
     while queue:
@@ -19,7 +19,6 @@ def find_path(maze, start, finish):
 
 
 def move(pos, path):
-    # take only the first step in path
     if pos[0] < path[1][0]:
         sys.stdout.write('MOVE RIGHT\n\n')
     elif pos[0] > path[1][0]:
@@ -34,7 +33,8 @@ while s != "":
     if 'HELLO' in s:
         sys.stdout.write('I AM NAM\n\n')
     if 'YOU ARE' in s:
-        name = s[-2] # get the letter attached to the IA
+        name = s[-2]
+        ''' get the letter attached to the IA '''
         sys.stdout.write('OK\n\n')
     if 'MAZE' in s:
         maze = []
